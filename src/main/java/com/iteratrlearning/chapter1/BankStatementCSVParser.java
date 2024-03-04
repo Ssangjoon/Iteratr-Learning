@@ -1,9 +1,9 @@
-package com.iteratrlearning;
+package com.iteratrlearning.chapter1;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BankStatementCSVParser implements BankStatementParser{
     final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -19,11 +19,7 @@ public class BankStatementCSVParser implements BankStatementParser{
 
     @Override
     public List<BankTransaction> parseLinesFrom(final List<String> lines){
-        final List<BankTransaction> bankingTransactions = new ArrayList<>();
-        for(final String line : lines){
-            bankingTransactions.add(parseFrom(line));
-        }
-        return bankingTransactions;
+        return lines.stream().map(this::parseFrom).collect(Collectors.toList());
     }
 
 }

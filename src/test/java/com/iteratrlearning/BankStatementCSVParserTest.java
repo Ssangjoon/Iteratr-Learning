@@ -1,5 +1,8 @@
 package com.iteratrlearning;
 
+import com.iteratrlearning.chapter1.BankStatementCSVParser;
+import com.iteratrlearning.chapter1.BankStatementParser;
+import com.iteratrlearning.chapter1.BankTransaction;
 import org.junit.Assert;
 import org.junit.Test;
 

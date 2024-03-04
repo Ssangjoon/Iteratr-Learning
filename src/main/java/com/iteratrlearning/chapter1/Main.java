@@ -1,4 +1,4 @@
-package com.iteratrlearning;
+package com.iteratrlearning.chapter1;
 
 import java.io.IOException;
 
@@ -8,6 +8,8 @@ public class Main {
 
         final BankStatementParser bankStatementParser = new BankStatementCSVParser();
 
-        bankStatementAnalyzer.analyze(args[0], bankStatementParser);
+        final Exporter exporter = new HtmlExporter();
+
+        bankStatementAnalyzer.analyze("bank-data-simple.csv", bankStatementParser, exporter);
     }
 }

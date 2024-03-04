@@ -1,4 +1,4 @@
-package com.iteratrlearning;
+package com.iteratrlearning.chapter1;
 
 @FunctionalInterface
 public interface BankTransactionSummarizer {

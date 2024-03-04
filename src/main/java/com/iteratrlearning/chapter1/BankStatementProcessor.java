@@ -1,11 +1,8 @@
-package com.iteratrlearning;
+package com.iteratrlearning.chapter1;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 
 public class BankStatementProcessor {
@@ -13,6 +10,18 @@ public class BankStatementProcessor {
 
     public BankStatementProcessor(final List<BankTransaction> bankTransactions) {
         this.bankTransactions = bankTransactions;
+    }
+
+    public SummaryStatistics summarizeTransactions() {
+
+        final DoubleSummaryStatistics doubleSummaryStatistics = bankTransactions.stream()
+                .mapToDouble(BankTransaction::getAmount)
+                .summaryStatistics();
+
+        return new SummaryStatistics(doubleSummaryStatistics.getSum(),
+                doubleSummaryStatistics.getMax(),
+                doubleSummaryStatistics.getMin(),
+                doubleSummaryStatistics.getAverage());
     }
 
     public double summarizeTransactions(final BankTransactionSummarizer bankTransactionSummarizer){
@@ -27,24 +36,6 @@ public class BankStatementProcessor {
         return summarizeTransactions((acc, bankTransaction) -> bankTransaction.getDate().getMonth() == month ? acc + bankTransaction.getAmount() : acc);
     }
 
-    public double calculateTotalAmount(){
-        double total = 0d;
-        for (final BankTransaction bankTransaction: bankTransactions) {
-            total += bankTransaction.getAmount();
-        }
-        return total;
-    }
-
-    public double calculateTotalForCategory(final String category) {
-        double total = 0;
-        for (final BankTransaction bankTransaction : bankTransactions) {
-            if (bankTransaction.getDescription().equals(category)) {
-                total += bankTransaction.getAmount();
-            }
-        }
-        return total;
-    }
-
     public List<BankTransaction> findTransactions(final BankTransactionFilter bankTransactionFilter){
         final List<BankTransaction> result = new ArrayList<>();
         for (final BankTransaction bankTransaction: bankTransactions){
@@ -55,13 +46,7 @@ public class BankStatementProcessor {
         return result;
     }
     public List<BankTransaction> findTransactionsGreaterThanEqaul(final int amount){
-        final List<BankTransaction> result = new ArrayList<>();
-        for (final BankTransaction bankTransaction: bankTransactions){
-            if(bankTransaction.getAmount() >= amount){
-                result.add(bankTransaction);
-            }
-        }
-        return result;
+        return findTransactions(bankTransaction -> bankTransaction.getAmount() >= amount);
     }
 
 }
