@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-// 메서드는 Java의 Collections 프레임워크에서 제공하는 메서드 중 하나입니다.
+// Java의 Collections 프레임워크에서 제공하는 메서드 중 하나입니다.
 // 이 메서드는 리스트를 수정할 수 없는, 즉 변경 불가능한(immutable) 상태로 만드는 데 사용
 import static java.util.Collections.unmodifiableList;
 

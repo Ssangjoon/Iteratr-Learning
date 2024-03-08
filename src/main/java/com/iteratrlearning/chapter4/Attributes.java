@@ -1,7 +1,6 @@
 package com.iteratrlearning.chapter4;
 
-public final class Attributes
-{
+public final class Attributes {
     // final : final 키워드는 해당 클래스가 다른 어떤 클래스에 의해 상속될 수 없다는 것을 나타냅니다.
     // 필드에 사용될 때는 그 필드가 변경 불가능(immutable)임을 의미하며, 따라서 PATH 필드는 선언 이후 그 값이 변경될 수 없습니다.
 
